@@ -31,3 +31,25 @@ best_model <- filter(vehicles, make == 'Acura', year == 2015) %>%
 
 # Write 3 functions, one for each approach.  Then,
 # Test how long it takes to perform each one 1000 times
+temp_model <- function() {
+  acuras <- filter(vehicles, make == 'Acura', year == 2015)
+  best.acura <- filter(acuras, hwy == max(hwy))
+  best.model <- select(best_acura, model)
+}
+system.time(for (i in 1:1000) temp_model())
+
+nested_model <- function() {
+  best_model <- select(
+    filter(
+      filter(vehicles, make == 'Acura', year == 2015), hwy == max(hwy)
+    ), model
+  )
+}
+system.time(for (i in 1:1000) nested_model())
+
+pipe_model <- function() {
+  best_model <- filter(vehicles, make == 'Acura', year == 2015) %>%
+    filter(hwy == max(hwy)) %>%
+    select(model)
+}
+system.time(for (i in 1:1000) pipe_model())

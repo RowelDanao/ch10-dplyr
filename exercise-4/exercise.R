@@ -1,7 +1,7 @@
 # Exercise 4: practicing with dplyr
 
 # Install the `nycflights13` package. Load (`library()`) the package.
-# You'll also need to load `dplyr`
+# You'll also need to load `dplyr`.
 install.packages("nycflights13")
 library(dplyr)
 library(nycflights13)
